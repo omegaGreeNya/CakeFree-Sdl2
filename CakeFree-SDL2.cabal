@@ -25,25 +25,71 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      CakeFree.Backend.Base.Domain
+      CakeFree.Backend.Base.Domain.LoadResource
+      CakeFree.Backend.Base.LoadResource.Implementation
+      CakeFree.Backend.Base.Runtime
+      CakeFree.Backend.Input.Interpreter
+      CakeFree.Backend.Input.Language
+      CakeFree.Backend.Render.Interpreter
+      CakeFree.Backend.Render.Language
+      CakeFree.Backend.Sound.Interpreter
+      CakeFree.Backend.Sound.Language
+      CakeFree.Initialisation
+      CakeFree.Initialisation.Interpreter
+      CakeFree.Initialisation.Language
+      CakeFree.Lang.Interpreter
+      CakeFree.Lang.Language
+      CakeFree.Language
+      CakeFree.LoadResource.Interpreter
+      CakeFree.LoadResource.Language
+      CakeFree.Loop
+      CakeFree.Loop.Interpreter
+      CakeFree.Loop.Language
+      CakeFree.Prelude
   other-modules:
       Paths_CakeFree_SDL2
   hs-source-dirs:
       src
+  default-extensions:
+      GADTs
+      ExplicitForAll
   build-depends:
       base >=4.7 && <5
+    , directory
+    , filepath
+    , free
+    , linear
+    , sdl2
+    , sdl2-image
+    , sdl2-mixer
+    , sdl2-ttf
+    , text
   default-language: Haskell2010
 
 executable CakeFree-SDL2-exe
   main-is: Main.hs
   other-modules:
+      Playground
       Paths_CakeFree_SDL2
   hs-source-dirs:
       app
+  default-extensions:
+      GADTs
+      ExplicitForAll
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       CakeFree-SDL2
     , base >=4.7 && <5
+    , directory
+    , filepath
+    , free
+    , linear
+    , sdl2
+    , sdl2-image
+    , sdl2-mixer
+    , sdl2-ttf
+    , text
   default-language: Haskell2010
 
 test-suite CakeFree-SDL2-test
@@ -53,8 +99,20 @@ test-suite CakeFree-SDL2-test
       Paths_CakeFree_SDL2
   hs-source-dirs:
       test
+  default-extensions:
+      GADTs
+      ExplicitForAll
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       CakeFree-SDL2
     , base >=4.7 && <5
+    , directory
+    , filepath
+    , free
+    , linear
+    , sdl2
+    , sdl2-image
+    , sdl2-mixer
+    , sdl2-ttf
+    , text
   default-language: Haskell2010

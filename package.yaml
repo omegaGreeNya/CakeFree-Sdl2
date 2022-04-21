@@ -21,6 +21,19 @@ description:         Please see the README on GitHub at <https://github.com/Omeg
 
 dependencies:
 - base >= 4.7 && < 5
+- directory
+- filepath
+- free
+- linear
+- sdl2
+- sdl2-image
+- sdl2-ttf
+- sdl2-mixer
+- text
+default-extensions:
+- GADTs
+- ExplicitForAll
+
 
 library:
   source-dirs: src
