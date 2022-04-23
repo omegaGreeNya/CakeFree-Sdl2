@@ -1,12 +1,6 @@
-module CakeFree.Backend.Base.Runtime where
+module CakeFree.Backend.Base.Runtime 
+   ( module X
+   ) where
 
-import CakeFree.Prelude
-
-data Blanks = Blanks
-   { _texture :: Texture
-   }
-
-data LoadHandle = LoadHandle
-   { _renderer :: Renderer
-   , _blanks :: Blanks
-   }
+import CakeFree.Backend.Base.Runtime.Config as X
+import CakeFree.Backend.Base.Runtime.Core as X

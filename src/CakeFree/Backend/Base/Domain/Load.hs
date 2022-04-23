@@ -1,4 +1,4 @@
-module CakeFree.Backend.Base.Domain.LoadResource where
+module CakeFree.Backend.Base.Domain.Load where
 
 import CakeFree.Prelude
 

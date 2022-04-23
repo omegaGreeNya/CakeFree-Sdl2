@@ -1,23 +1,31 @@
-module CakeFree.LoadResource.Language where
+module CakeFree.Backend.Load.Language where
 
 import CakeFree.Prelude
 
 import qualified CakeFree.Backend.Base.Domain as D
-import CakeFree.Backend.Base.LoadResource.Implementation (HasLoader)
+import CakeFree.Backend.Load.Implementation (HasLoader)
 
 
-data LoadResourceF next where
+data LoadF next where
    LoadResource :: HasLoader a 
                 => D.Resource a
-                -> ((D.LoadResult a) -> next) -> LoadResourceF next
+                -> (D.LoadResult a -> next) -> LoadF next
+   SafeLoad     :: Exception e 
+                => IO a
+                -> (Either e a -> next) -> LoadF next
 
-instance Functor LoadResourceF where
+instance Functor LoadF where
    fmap f (LoadResource resource next) = LoadResource resource (f . next)
+   fmap f (SafeLoad action next) = SafeLoad action (f . next)
 
-type LoadResourceL = F LoadResourceF
+type LoadL = F LoadF
 
-loadResource :: HasLoader a => D.Resource a -> LoadResourceL (D.LoadResult a)
+loadResource :: HasLoader a => D.Resource a -> LoadL (D.LoadResult a)
 loadResource resource = liftF $ LoadResource resource id
+
+safeLoad :: Exception e => IO a -> LoadL (Either e a)
+safeLoad action = liftF $ SafeLoad action id
+
 
 {-
 Use example (while LoadSafetly is method of LoadResourceL)

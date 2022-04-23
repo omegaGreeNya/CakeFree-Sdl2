@@ -2,7 +2,7 @@
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module CakeFree.Backend.Base.LoadResource.Implementation
+module CakeFree.Backend.Load.Implementation
     ( loadResource
     , HasLoader(..)
     ) where
@@ -13,12 +13,12 @@ import qualified CakeFree.Backend.Base.Domain  as D
 import CakeFree.Backend.Base.Runtime
 
 
+import Control.Exception (IOException(..))
+import System.IO (hClose, hGetLine, IOMode(..), openFile, )
 
 import qualified SDL.Image as SDL (loadTexture)
 import qualified Data.Text as T (pack)
 
-import Control.Exception (IOException(..))
-import System.IO (hClose, hGetLine, IOMode(..), openFile, )
 
 loadResource :: HasLoader a => LoadHandle -> D.Resource a -> IO (D.LoadResult a)
 loadResource handle resource@(D.Location path) = do
@@ -27,7 +27,7 @@ loadResource handle resource@(D.Location path) = do
       Left err -> pure $ ([D.LoadingError (T.pack . show $ err)], blank handle)
       Right result -> pure $ ([], result)
 
--- Rework?
+-- Rework? Move away?
 class HasLoader a where
    rawLoader :: LoadHandle -> FilePath -> IO a
    blank :: LoadHandle -> a

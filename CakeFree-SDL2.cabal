@@ -26,26 +26,24 @@ source-repository head
 library
   exposed-modules:
       CakeFree.Backend.Base.Domain
-      CakeFree.Backend.Base.Domain.LoadResource
-      CakeFree.Backend.Base.LoadResource.Implementation
+      CakeFree.Backend.Base.Domain.Load
       CakeFree.Backend.Base.Runtime
+      CakeFree.Backend.Base.Runtime.Config
+      CakeFree.Backend.Base.Runtime.Core
+      CakeFree.Backend.Initialisation.Interpreter
+      CakeFree.Backend.Initialisation.Language
       CakeFree.Backend.Input.Interpreter
       CakeFree.Backend.Input.Language
+      CakeFree.Backend.Lang.Interpreter
+      CakeFree.Backend.Lang.Language
+      CakeFree.Backend.Load.Implementation
+      CakeFree.Backend.Load.Interpreter
+      CakeFree.Backend.Load.Language
       CakeFree.Backend.Render.Interpreter
       CakeFree.Backend.Render.Language
       CakeFree.Backend.Sound.Interpreter
       CakeFree.Backend.Sound.Language
-      CakeFree.Initialisation
-      CakeFree.Initialisation.Interpreter
-      CakeFree.Initialisation.Language
-      CakeFree.Lang.Interpreter
-      CakeFree.Lang.Language
       CakeFree.Language
-      CakeFree.LoadResource.Interpreter
-      CakeFree.LoadResource.Language
-      CakeFree.Loop
-      CakeFree.Loop.Interpreter
-      CakeFree.Loop.Language
       CakeFree.Prelude
   other-modules:
       Paths_CakeFree_SDL2
@@ -54,6 +52,8 @@ library
   default-extensions:
       GADTs
       ExplicitForAll
+      RecordWildCards
+      OverloadedStrings
   build-depends:
       base >=4.7 && <5
     , directory
@@ -77,6 +77,8 @@ executable CakeFree-SDL2-exe
   default-extensions:
       GADTs
       ExplicitForAll
+      RecordWildCards
+      OverloadedStrings
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       CakeFree-SDL2
@@ -102,6 +104,8 @@ test-suite CakeFree-SDL2-test
   default-extensions:
       GADTs
       ExplicitForAll
+      RecordWildCards
+      OverloadedStrings
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       CakeFree-SDL2
