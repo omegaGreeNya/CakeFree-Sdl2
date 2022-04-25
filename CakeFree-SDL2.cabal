@@ -30,6 +30,7 @@ library
       CakeFree.Backend.Base.Runtime
       CakeFree.Backend.Base.Runtime.Config
       CakeFree.Backend.Base.Runtime.Core
+      CakeFree.Backend.Initialisation.Implementation
       CakeFree.Backend.Initialisation.Interpreter
       CakeFree.Backend.Initialisation.Language
       CakeFree.Backend.Input.Interpreter
@@ -43,6 +44,7 @@ library
       CakeFree.Backend.Render.Language
       CakeFree.Backend.Sound.Interpreter
       CakeFree.Backend.Sound.Language
+      CakeFree.Interpreters
       CakeFree.Language
       CakeFree.Prelude
   other-modules:

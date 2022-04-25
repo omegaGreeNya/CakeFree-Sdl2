@@ -7,14 +7,19 @@ data Blanks = Blanks
    }
 
 data LoadHandle = LoadHandle
-   { _renderer :: Renderer
-   , _blanks :: Blanks
+   { _blanks :: Blanks
    }
 
 data InitHandle = InitHandle
    { _loadHandle :: LoadHandle
    }
+   
+data SDLVideo = SDLVideo
+   { _window   :: Window
+   , _renderer :: Renderer
+   }
 
 data RuntimeCore = RuntimeCore
    { _initHandle :: InitHandle
+   , _video      :: SDLVideo
    }

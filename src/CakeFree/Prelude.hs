@@ -3,7 +3,7 @@ module CakeFree.Prelude
    , 
    ) where
 
-import SDL                       as X (Texture, Renderer)
+import SDL                       as X (Window, Renderer, Texture)
 
 import Control.Monad.Free.Church as X (F (..), foldF, liftF, fromF, iter,
                                        iterM, retract)

@@ -20,26 +20,26 @@ import qualified SDL.Image as SDL (loadTexture)
 import qualified Data.Text as T (pack)
 
 
-loadResource :: HasLoader a => LoadHandle -> D.Resource a -> IO (D.LoadResult a)
-loadResource handle resource@(D.Location path) = do
-   (eResult :: Either IOException a) <- try $ loader handle resource
+loadResource :: HasLoader a => RuntimeCore -> D.Resource a -> IO (D.LoadResult a)
+loadResource rtCore resource@(D.Location path) = do
+   (eResult :: Either IOException a) <- try $ loader rtCore resource
    case eResult of
-      Left err -> pure $ ([D.LoadingError (T.pack . show $ err)], blank handle)
+      Left err -> pure $ ([D.LoadingError (T.pack . show $ err)], blank rtCore)
       Right result -> pure $ ([], result)
 
 -- Rework? Move away?
 class HasLoader a where
-   rawLoader :: LoadHandle -> FilePath -> IO a
-   blank :: LoadHandle -> a
+   rawLoader :: RuntimeCore -> FilePath -> IO a
+   blank :: RuntimeCore -> a
    {-# MINIMAL rawLoader, blank #-}
-   loader :: LoadHandle -> D.Resource a -> IO a
-   loader handle = \(D.Location path) -> rawLoader handle path
+   loader :: RuntimeCore -> D.Resource a -> IO a
+   loader rtCore = \(D.Location path) -> rawLoader rtCore path
 
 
 -- Move into TYPES module?
 instance HasLoader Texture where
-   rawLoader handle = SDL.loadTexture (_renderer handle)
-   blank handle = _texture . _blanks $ handle
+   rawLoader rtCore = SDL.loadTexture (_renderer . _video $ rtCore)
+   blank rtCore = _texture . _blanks . _loadHandle . _initHandle $ rtCore
 
 
 -- test, delete after

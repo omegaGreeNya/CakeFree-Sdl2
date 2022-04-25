@@ -16,9 +16,11 @@ data WindowConfig = WindowConfig
 
 data RendererConfig = RendererConfig
    { _rendererDriver :: CInt
-   , _rendererConfig   :: SDL.RendererConfig
+   , _rendererConfig :: SDL.RendererConfig
    }
 
+
+-- Renderer would use exactly _windowsCfg for initialization
 data RuntimeConfig = RuntimeConfig
    { _windowCfg    :: WindowConfig
    , _rendererCfg  :: RendererConfig

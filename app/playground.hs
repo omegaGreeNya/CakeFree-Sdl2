@@ -1,3 +1,4 @@
+
 {-
 
 1. Инициализация
@@ -28,19 +29,27 @@ Game Loop?
 5. Повторить
 
 -}
-{-# LANGUAGE GADTs #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Playground (runPlayground) 
                   where
 
 import CakeFree.Prelude
-import CakeFree.Backend.Base.LoadResource.Implementation (HasLoader(..))
-import CakeFree.LoadResource.Language
-import CakeFree.LoadResource.Interpreter
 
-import qualified BackEnd.Base.Domain as D
+import CakeFree.Language
+import CakeFree.Interpreters
 
+import CakeFree.Backend.Base.Runtime (RuntimeCore, defaultConfigUnsafe)
+
+import Control.Exception (IOException(..))
 
 runPlayground :: IO ()
-runPlayground = undefined
-   
+runPlayground = langInterpret createWindow
+
+createWindow :: LangL ()
+createWindow = do
+   (eResult :: Either IOException RuntimeCore) <- safeEval . evalInit $ initWindow
+   pure ()
+
+initWindow :: InitL (RuntimeCore)
+initWindow = initRuntime (defaultConfigUnsafe "test")
