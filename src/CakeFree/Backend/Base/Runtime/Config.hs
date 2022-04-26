@@ -14,11 +14,14 @@ data WindowConfig = WindowConfig
    , _windowConfig :: SDL.WindowConfig
    }
 
+-- makeLenses ''WindowConfig
+
 data RendererConfig = RendererConfig
    { _rendererDriver :: CInt
    , _rendererConfig :: SDL.RendererConfig
    }
 
+-- makeLenses ''RendererConfig
 
 -- Renderer would use exactly _windowsCfg for initialization
 data RuntimeConfig = RuntimeConfig
@@ -26,6 +29,8 @@ data RuntimeConfig = RuntimeConfig
    , _rendererCfg  :: RendererConfig
    , _blanksLoader :: (Renderer -> IO Blanks)
    }
+
+-- makeLenses ''RuntimeConfig
 
 defaultWindow :: Text -> WindowConfig
 defaultWindow wName = WindowConfig wName SDL.defaultWindow
@@ -42,3 +47,10 @@ defaultBlanksLoaderUnsafe renderer = do
 -- unsafe due fixed blanks filepath, load calls action
 defaultConfigUnsafe :: Text -> RuntimeConfig
 defaultConfigUnsafe wName = RuntimeConfig (defaultWindow wName) defaultRenderer defaultBlanksLoaderUnsafe
+
+
+--- DO ME PLS
+{-
+lensRendererDriver :: 
+lensRendererDriver 
+-}

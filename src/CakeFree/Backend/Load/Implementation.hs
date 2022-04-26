@@ -27,19 +27,10 @@ loadResource rtCore resource@(D.Location path) = do
       Left err -> pure $ ([D.LoadingError (T.pack . show $ err)], blank rtCore)
       Right result -> pure $ ([], result)
 
--- Rework? Move away?
-class HasLoader a where
-   rawLoader :: RuntimeCore -> FilePath -> IO a
-   blank :: RuntimeCore -> a
-   {-# MINIMAL rawLoader, blank #-}
-   loader :: RuntimeCore -> D.Resource a -> IO a
-   loader rtCore = \(D.Location path) -> rawLoader rtCore path
-
-
 -- Move into TYPES module?
 instance HasLoader Texture where
-   rawLoader rtCore = SDL.loadTexture (_renderer . _video $ rtCore)
-   blank rtCore = _texture . _blanks . _loadHandle . _initHandle $ rtCore
+   rawLoader rtCore = SDL.loadTexture (rtCore ^. lensRenderer)
+   blank rtCore = rtCore ^. lensBlanks . texture
 
 
 -- test, delete after

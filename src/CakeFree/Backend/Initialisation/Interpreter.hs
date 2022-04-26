@@ -13,9 +13,6 @@ initInterpretF :: L.InitF a -> IO a
 initInterpretF (L.InitRuntime rtCfg next) = do
    rtCore <- loadRtCore rtCfg
    return $ next rtCore
-initInterpretF (L.EvalLoad rtCore loadAct next) = do
-   result <- loadInterpret rtCore loadAct
-   return $ next result
 
 initInterpret :: L.InitL a -> IO a
 initInterpret = foldF $ initInterpretF

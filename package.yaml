@@ -30,11 +30,14 @@ dependencies:
 - sdl2-ttf
 - sdl2-mixer
 - text
+- lens
+- ghc-prim
 default-extensions:
 - GADTs
 - ExplicitForAll
 - RecordWildCards
 - OverloadedStrings
+- TemplateHaskell
 
 
 library:
