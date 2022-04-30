@@ -3,11 +3,11 @@ module CakeFree.Backend.Initialisation.Language where
 import CakeFree.Prelude
 
 import CakeFree.Backend.Base.Runtime
+import CakeFree.Backend.Base.Runtime.Config
 
 import qualified CakeFree.Backend.Load.Language as L
 
 
--- Move InitRuntime into AppL.
 data InitF next where
    InitRuntime :: RuntimeConfig
                -> (RuntimeCore -> next) -> InitF next

@@ -34,7 +34,10 @@ library
       CakeFree.Backend.Base.Domain.Load
       CakeFree.Backend.Base.Runtime
       CakeFree.Backend.Base.Runtime.Config
-      CakeFree.Backend.Base.Runtime.Core
+      CakeFree.Backend.Base.Types
+      CakeFree.Backend.Base.Types.Raw.Types
+      CakeFree.Backend.Base.Types.StaticPicture
+      CakeFree.Backend.Base.Types.Texture
       CakeFree.Backend.Initialisation.Implementation
       CakeFree.Backend.Initialisation.Interpreter
       CakeFree.Backend.Initialisation.Language
@@ -69,6 +72,7 @@ library
     , filepath
     , free
     , ghc-prim
+    , hashtables
     , lens
     , linear
     , sdl2
@@ -99,6 +103,7 @@ executable CakeFree-SDL2-exe
     , filepath
     , free
     , ghc-prim
+    , hashtables
     , lens
     , linear
     , sdl2
@@ -129,6 +134,7 @@ test-suite CakeFree-SDL2-test
     , filepath
     , free
     , ghc-prim
+    , hashtables
     , lens
     , linear
     , sdl2

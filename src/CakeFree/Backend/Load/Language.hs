@@ -3,7 +3,7 @@ module CakeFree.Backend.Load.Language where
 import CakeFree.Prelude
 
 import qualified CakeFree.Backend.Base.Domain as D
-import CakeFree.Backend.Load.Implementation (HasLoader)
+import CakeFree.Backend.Base.Classes (HasLoader(..))
 
 
 data LoadF next where

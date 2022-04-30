@@ -4,10 +4,13 @@ module CakeFree.Backend.Base.Runtime.Config where
 
 import CakeFree.Prelude 
 
-import CakeFree.Backend.Base.Runtime.Core
+import CakeFree.Backend.Base.Runtime
+import CakeFree.Backend.Base.Types
 
-import qualified SDL hiding (Texture, Renderer)
-import qualified SDL.Image as SDL (loadTexture)
+import qualified SDL (WindowConfig(..), RendererConfig(..),
+                      defaultWindow, defaultRenderer)
+
+import Data.HashTable.IO (new)
 
 data WindowConfig = WindowConfig
    { _windowName   :: Text
@@ -23,11 +26,16 @@ data RendererConfig = RendererConfig
 
 -- makeLenses ''RendererConfig
 
+data BanksConfig = BanksConfig
+   { _textureBankLoader :: (Renderer -> IO TextureBank)
+   }
+
 -- Renderer would use exactly _windowsCfg for initialization
 data RuntimeConfig = RuntimeConfig
    { _windowCfg    :: WindowConfig
    , _rendererCfg  :: RendererConfig
    , _blanksLoader :: (Renderer -> IO Blanks)
+   , _banksCfg     :: BanksConfig
    }
 
 -- makeLenses ''RuntimeConfig
@@ -40,13 +48,25 @@ defaultRenderer = RendererConfig (-1) SDL.defaultRenderer
 
 defaultBlanksLoaderUnsafe :: Renderer -> IO Blanks
 defaultBlanksLoaderUnsafe renderer = do
-   _texture <- SDL.loadTexture renderer "./data/blanks/texture.png"
+   (texture, size) <- loadTexture renderer "./data/blanks/texture.png"
+   let _texture = Texture texture size
    return $ Blanks {..}
+
+defaultTextureBankLoader :: Renderer -> IO TextureBank
+defaultTextureBankLoader _ = new
+   
+
+defaultBanks :: BanksConfig
+defaultBanks = BanksConfig defaultTextureBankLoader
 
 
 -- unsafe due fixed blanks filepath, load calls action
 defaultConfigUnsafe :: Text -> RuntimeConfig
-defaultConfigUnsafe wName = RuntimeConfig (defaultWindow wName) defaultRenderer defaultBlanksLoaderUnsafe
+defaultConfigUnsafe wName = RuntimeConfig 
+   (defaultWindow wName)
+   defaultRenderer
+   defaultBlanksLoaderUnsafe
+   defaultBanks
 
 
 --- DO ME PLS

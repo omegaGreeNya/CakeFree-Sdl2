@@ -24,13 +24,14 @@ dependencies:
 - directory
 - filepath
 - free
+- hashtables
+- lens
 - linear
 - sdl2
 - sdl2-image
 - sdl2-ttf
 - sdl2-mixer
 - text
-- lens
 - ghc-prim
 default-extensions:
 - GADTs

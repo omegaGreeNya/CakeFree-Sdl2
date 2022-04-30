@@ -3,6 +3,7 @@ module CakeFree.Backend.Lang.Interpreter where
 import CakeFree.Prelude
 
 import CakeFree.Backend.Load.Interpreter
+import CakeFree.Backend.Render.Interpreter
 
 import qualified CakeFree.Backend.Lang.Language as L
 

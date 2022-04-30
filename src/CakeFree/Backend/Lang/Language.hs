@@ -26,7 +26,7 @@ type LangL = F LangF
 evalLoad :: RuntimeCore -> L.LoadL a -> LangL a
 evalLoad rtCore action = liftF $ EvalLoad rtCore action id
 
-evalRender :: RentimeCore -> L.RenderL a -> LangL a
+evalRender :: RuntimeCore -> L.RenderL a -> LangL a
 evalRender rtCore action = liftF $ EvalRender rtCore action id
 
 safeEval :: Exception e => LangL a -> LangL (Either e a)
