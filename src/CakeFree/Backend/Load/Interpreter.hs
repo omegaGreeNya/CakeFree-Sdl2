@@ -9,8 +9,14 @@ import qualified CakeFree.Backend.Base.Domain  as D
 import qualified CakeFree.Backend.Load.Language as L
 
 loadInterpretF :: RuntimeCore -> L.LoadF a -> IO a
-loadInterpretF rtCore (L.LoadResource resource next) = do
-   result <- loadResource rtCore resource
+loadInterpretF rtCore (L.LoadResource resCfg next) = do
+   result <- loadResource rtCore resCfg
+   pure $ next result
+loadInterpretF rtCore (L.UpdateResource resCfg next) = do
+   result <- updateResource rtCore resCfg
+   pure $ next result
+loadInterpretF rtCore (L.DirectLoadResource resCfg next) = do
+   result <- directLoadResource rtCore resCfg
    pure $ next result
 
 loadInterpret :: RuntimeCore -> L.LoadL a -> IO a

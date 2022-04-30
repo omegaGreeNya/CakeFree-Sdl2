@@ -4,3 +4,4 @@ module CakeFree.Backend.Base.Classes
 
 import CakeFree.Backend.Base.Classes.Drawable  as X
 import CakeFree.Backend.Base.Classes.HasLoader as X
+import CakeFree.Backend.Base.Classes.HasBank   as X

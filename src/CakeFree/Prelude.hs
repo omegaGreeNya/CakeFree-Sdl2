@@ -1,10 +1,12 @@
 module CakeFree.Prelude 
    ( module X
    , loadTexture
+   , modifyTMVar
    ) where
 
 import SDL                       as X (Window, Renderer, Rectangle)
 
+--import Control.Concurrent.STM    as X
 import Control.Monad.Free.Church as X (F (..), foldF, liftF, fromF, iter,
                                        iterM, retract)
 
@@ -36,3 +38,9 @@ loadTexture renderer path = do
       texture <- SDL.createTextureFromSurface renderer surface
       SDL.freeSurface surface
       return (texture, size)
+{-
+modifyTMVar :: TMVar a -> (a -> a) -> IO ()
+modifyTMVar var f = atomically $ do
+   v <- readTMVar var
+   putTMVar var (f v)
+-}

@@ -7,7 +7,7 @@ import CakeFree.Prelude
    And loading data from config (not implemented)
 -}
 
-newtype Resource a = Location FilePath
+newtype ResourceConfig configA a = Config configA
 
 data LoadError = LoadingError Text
                deriving Show

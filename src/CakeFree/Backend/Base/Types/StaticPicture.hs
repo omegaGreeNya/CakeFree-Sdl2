@@ -15,7 +15,7 @@ data StaticPicture = StaticPicture Texture Clip Place
 
 instance HasLoader StaticPicture where
    rawLoader rtCore path = do
-      texture <- rawLoader rtCore path
+      texture <- rawLoader rtCore path    -- ^ Using texture HasLoader instance
       return (StaticPicture texture Nothing Nothing)
    blank rtCore = StaticPicture (rtCore  ^. lensBlanks . texture) Nothing Nothing
 
