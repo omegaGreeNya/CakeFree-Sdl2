@@ -1,7 +1,7 @@
 module CakeFree.Prelude 
    ( module X
    , loadTexture
-   , modifyTMVar
+--   , modifyTMVar
    ) where
 
 import SDL                       as X (Window, Renderer, Rectangle)

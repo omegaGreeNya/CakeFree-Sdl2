@@ -24,6 +24,7 @@ dependencies:
 - directory
 - filepath
 - free
+- hashable
 - hashtables
 - lens
 - linear
@@ -39,6 +40,11 @@ default-extensions:
 - RecordWildCards
 - OverloadedStrings
 - TemplateHaskell
+- MultiParamTypeClasses
+- FunctionalDependencies
+- TypeSynonymInstances
+- FlexibleInstances
+
 
 
 library:

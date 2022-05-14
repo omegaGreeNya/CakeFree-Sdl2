@@ -29,13 +29,15 @@ library
       CakeFree.Backend.App.Language
       CakeFree.Backend.Base.Classes
       CakeFree.Backend.Base.Classes.Drawable
+      CakeFree.Backend.Base.Classes.HasBank
       CakeFree.Backend.Base.Classes.HasLoader
       CakeFree.Backend.Base.Domain
       CakeFree.Backend.Base.Domain.Load
       CakeFree.Backend.Base.Runtime
       CakeFree.Backend.Base.Runtime.Config
       CakeFree.Backend.Base.Types
-      CakeFree.Backend.Base.Types.Raw.Types
+      CakeFree.Backend.Base.Types.Raw
+      CakeFree.Backend.Base.Types.Raw.Texture
       CakeFree.Backend.Base.Types.StaticPicture
       CakeFree.Backend.Base.Types.Texture
       CakeFree.Backend.Initialisation.Implementation
@@ -66,12 +68,17 @@ library
       RecordWildCards
       OverloadedStrings
       TemplateHaskell
+      MultiParamTypeClasses
+      FunctionalDependencies
+      TypeSynonymInstances
+      FlexibleInstances
   build-depends:
       base >=4.7 && <5
     , directory
     , filepath
     , free
     , ghc-prim
+    , hashable
     , hashtables
     , lens
     , linear
@@ -95,6 +102,10 @@ executable CakeFree-SDL2-exe
       RecordWildCards
       OverloadedStrings
       TemplateHaskell
+      MultiParamTypeClasses
+      FunctionalDependencies
+      TypeSynonymInstances
+      FlexibleInstances
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       CakeFree-SDL2
@@ -103,6 +114,7 @@ executable CakeFree-SDL2-exe
     , filepath
     , free
     , ghc-prim
+    , hashable
     , hashtables
     , lens
     , linear
@@ -126,6 +138,10 @@ test-suite CakeFree-SDL2-test
       RecordWildCards
       OverloadedStrings
       TemplateHaskell
+      MultiParamTypeClasses
+      FunctionalDependencies
+      TypeSynonymInstances
+      FlexibleInstances
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       CakeFree-SDL2
@@ -134,6 +150,7 @@ test-suite CakeFree-SDL2-test
     , filepath
     , free
     , ghc-prim
+    , hashable
     , hashtables
     , lens
     , linear

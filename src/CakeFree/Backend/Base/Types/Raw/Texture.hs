@@ -1,4 +1,4 @@
-module CakeFree.Backend.Base.Types.Raw.Types where
+module CakeFree.Backend.Base.Types.Raw.Texture where
 
 import CakeFree.Prelude
 

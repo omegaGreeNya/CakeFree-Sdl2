@@ -2,7 +2,7 @@ module CakeFree.Backend.Base.Runtime where
 
 import CakeFree.Prelude
 
-import CakeFree.Backend.Base.Types.Raw.Types (Texture)
+import CakeFree.Backend.Base.Types.Raw (Texture)
 
 import Data.HashTable.IO (mutate)
 
