@@ -12,6 +12,8 @@ import Control.Monad.Free.Church as X (F (..), foldF, liftF, fromF, iter,
 
 import Control.Exception         as X (try, bracket, Exception)
 import Control.Lens              as X
+import Data.Hashable             as X (Hashable(..))
+import Data.HashTable.Class      as X (HashTable(..))
 import Data.HashTable.IO         as X (BasicHashTable, CuckooHashTable,
                                        LinearHashTable, IOHashTable)
 import Data.Text                 as X (Text(..))

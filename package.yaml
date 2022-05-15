@@ -37,6 +37,7 @@ dependencies:
 default-extensions:
 - GADTs
 - ExplicitForAll
+- RankNTypes
 - RecordWildCards
 - OverloadedStrings
 - TemplateHaskell

@@ -29,7 +29,6 @@ library
       CakeFree.Backend.App.Language
       CakeFree.Backend.Base.Classes
       CakeFree.Backend.Base.Classes.Drawable
-      CakeFree.Backend.Base.Classes.HasBank
       CakeFree.Backend.Base.Classes.HasLoader
       CakeFree.Backend.Base.Domain
       CakeFree.Backend.Base.Domain.Load
@@ -37,6 +36,7 @@ library
       CakeFree.Backend.Base.Runtime.Config
       CakeFree.Backend.Base.Types
       CakeFree.Backend.Base.Types.Raw
+      CakeFree.Backend.Base.Types.Raw.Bank
       CakeFree.Backend.Base.Types.Raw.Texture
       CakeFree.Backend.Base.Types.StaticPicture
       CakeFree.Backend.Base.Types.Texture
@@ -65,6 +65,7 @@ library
   default-extensions:
       GADTs
       ExplicitForAll
+      RankNTypes
       RecordWildCards
       OverloadedStrings
       TemplateHaskell
@@ -99,6 +100,7 @@ executable CakeFree-SDL2-exe
   default-extensions:
       GADTs
       ExplicitForAll
+      RankNTypes
       RecordWildCards
       OverloadedStrings
       TemplateHaskell
@@ -135,6 +137,7 @@ test-suite CakeFree-SDL2-test
   default-extensions:
       GADTs
       ExplicitForAll
+      RankNTypes
       RecordWildCards
       OverloadedStrings
       TemplateHaskell

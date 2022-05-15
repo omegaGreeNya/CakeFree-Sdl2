@@ -3,16 +3,16 @@ module CakeFree.Backend.Load.Language where
 import CakeFree.Prelude
 
 import qualified CakeFree.Backend.Base.Domain as D
-import CakeFree.Backend.Base.Classes (HasLoader(..), HasBank(..))
+import CakeFree.Backend.Base.Classes (HasLoader(..))
 
 
 data LoadF next where
    -- Load from Bank, or from IO with adding to the Bank
-   LoadResource :: (HasBank a configA k v, HasLoader a configA)
+   LoadResource :: HasLoader a configA
                 => D.ResourceConfig configA a
                 -> (D.LoadResult a -> next) -> LoadF next
    -- Load from IO and rewriting in the Bank
-   UpdateResource :: (HasBank a configA k v, HasLoader a configA)
+   UpdateResource :: HasLoader a configA
                   => D.ResourceConfig configA a
                   -> (D.LoadResult a -> next) -> LoadF next
    -- Just Load from from IO, without interacting with Bank
@@ -27,11 +27,11 @@ instance Functor LoadF where
 
 type LoadL = F LoadF
 
-loadResource :: (HasBank a configA k v, HasLoader a configA)
+loadResource :: HasLoader a configA
              => D.ResourceConfig configA a -> LoadL (D.LoadResult a)
 loadResource resCfg = liftF $ LoadResource resCfg id
 
-updateResource :: (HasBank a configA k v, HasLoader a configA)
+updateResource :: HasLoader a configA
                => D.ResourceConfig configA a -> LoadL (D.LoadResult a)
 updateResource resCfg = liftF $ UpdateResource resCfg id
 

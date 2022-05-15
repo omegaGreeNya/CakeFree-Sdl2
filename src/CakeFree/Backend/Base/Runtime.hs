@@ -2,7 +2,7 @@ module CakeFree.Backend.Base.Runtime where
 
 import CakeFree.Prelude
 
-import CakeFree.Backend.Base.Types.Raw (Texture)
+import CakeFree.Backend.Base.Types.Raw.Texture (Texture)
 
 import Data.HashTable.IO (mutate)
 
@@ -69,32 +69,5 @@ lensRenderer = video . renderer
 lensBlanks :: Lens' RuntimeCore Blanks
 lensBlanks = initHandle . loadHandle . blanks
 
--- Move away? \/
-
-mutateTextureBank :: RuntimeCore -> FilePath -> (Maybe Texture -> (Maybe Texture, a)) -> IO a
-mutateTextureBank rtCore path f = mutate (rtCore ^. stateRuntime . textureBank) path f
-
-{- from Data.HashTable.IO
-   
-   mutate :: (Eq k, Hashable k) => h s k v -> k -> (Maybe v -> (Maybe v, a)) -> ST s a
-   
-   Generalized update. Given a key k, and a user function f, calls:
-
-   `f Nothing` if the key did not exist in the hash table
-   `f (Just v)` otherwise
-   If the user function returns (Nothing, _), then the value is deleted from the hash table.
-    Otherwise the mapping for k is inserted or replaced with the provided value.
-
-   Returns the second part of the tuple returned by f.
--}
-
--- | Load Texture into Bank if it wasn't already loaded
-addTexture :: RuntimeCore -> FilePath -> Texture -> IO ()
-addTexture rtCore path texture = mutateTextureBank rtCore path f
-   where f Nothing = (Just texture, ())
-         f a = (a, ())
-
--- | Updates Loaded Texture, if it wasn' there, adds it
-updateTexture :: RuntimeCore -> FilePath -> Texture -> IO ()
-updateTexture rtCore path texture = mutateTextureBank rtCore path f
-   where f _ = (Just texture, ())
+lensTextureBank :: Lens' RuntimeCore TextureBank
+lensTextureBank = stateRuntime . textureBank
